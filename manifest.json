@@ -11,7 +11,7 @@
   "content_scripts": [{
     "css": ["style.css"],
     "js": ["content.js"],
-    "matches": ["https://simkl.com/anime/*/*/episode-*/*", "https://simkl.com/anime/*/*", "https://simkl.com/anime/38636/one-piece/episode-783/?noHead=1&noTableHead=null&r=/anime/38636/*"],
+    "matches": ["https://simkl.com/anime/*/*/episode-*/*", "https://simkl.com/anime/*/*"],
     "run_at": "document_end"
   }],
   "web_accessible_resources":
