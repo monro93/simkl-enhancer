@@ -2,13 +2,16 @@
   "manifest_version": 2,
  
   "name": "SIMKL Enhacer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Add AnimeFLV to SIMKL",
+  "permissions": [
+    "webNavigation"
+  ],
  
   "content_scripts": [{
     "css": ["style.css"],
     "js": ["content.js"],
-    "matches": ["https://simkl.com/anime/*/*/episode-*/*"],
+    "matches": ["https://simkl.com/anime/*/*/episode-*/*", "https://simkl.com/anime/*/*", "https://simkl.com/anime/38636/one-piece/episode-783/?noHead=1&noTableHead=null&r=/anime/38636/*"],
     "run_at": "document_end"
   }],
   "web_accessible_resources":
