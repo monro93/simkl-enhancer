@@ -1,0 +1,21 @@
+.SimklTVDetailEpisodeLinkAnimeFLV {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/animeflv.png") no-repeat;
+    width: 124px;
+    height: 24px;
+    padding-left: 73px;
+}
+
+.SimklTVDetailEpisodeLinksItem a:hover{
+    text-decoration: none;
+}
+
+.SimklTVDetailEpisodeLinksItem a:link{
+    text-decoration: none;
+}
+
+.SimklTVDetailEpisodeLinkAnimeFLV:hover{
+    background: url("chrome-extension://__MSG_@@extension_id__/img/animeflv-inverted.png") no-repeat;
+}

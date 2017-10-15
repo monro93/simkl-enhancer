@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+ 
+  "name": "SIMKL Enhacer",
+  "version": "0.1.0",
+  "description": "Add AnimeFLV to SIMKL",
+ 
+  "content_scripts": [{
+    "css": ["style.css"],
+    "js": ["content.js"],
+    "matches": ["https://simkl.com/anime/*/*/episode-*/*"],
+    "run_at": "document_end"
+  }],
+  "web_accessible_resources":
+    [
+        "img/*"
+    ]
+ 
+}
