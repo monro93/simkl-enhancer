@@ -8,6 +8,7 @@ function addAlternativeLinks(){
         const episodeLink = "https://animeflv.net/ver/1/" + info[1] + "-" + info[2];
 
         let newLinkHtml = 
+        "<tr><td height=\"46\">" +
         "<div class=\"SimklTVDetailEpisodeLinksItem Sub ajLinkInside SimklTVDetailEpisodeLinksItemAnimeFLV\" id=\"emb0\">" +
             "<a target=\"_blank\" href=\"" + episodeLink + "\">"+
             "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">" +
@@ -21,10 +22,20 @@ function addAlternativeLinks(){
                 "<\/tr><\/tbody>" +
             "<\/table>"+
              "<\/a>"+
-        "<\/div>";
+        "<\/div>" +
+        "</td></tr>";
 
         var episodeLinkElements = document.getElementsByClassName("SimklTVDetailEpisodeLinksItem");
-        episodeLinkElements[episodeLinkElements.length-1].insertAdjacentHTML("afterend", newLinkHtml);
+
+        if(episodeLinkElements[0] != null){
+            episodeLinkElements[episodeLinkElements.length-1].insertAdjacentHTML("afterend", newLinkHtml);
+        }else{
+            var moreLinksElement = document.getElementsByClassName("SimklTVDetailEpisodeLinksMore")[0];
+            var elementWherePlaceTheLink = moreLinksElement.parentElement.parentElement;
+            elementWherePlaceTheLink.insertAdjacentHTML("beforebegin", newLinkHtml)
+            elementWherePlaceTheLink.insertAdjacentHTML("beforebegin", "<tr><td height=\"28\"> </td></tr>");
+        }
+
     }
     
 }
