@@ -1,4 +1,4 @@
-# simkl-enhancer
+# Simkl-enhancer
 
 Simkl-enhancer is a chrome extension to add some funcionalities to [Simkl](https://simkl.com) a TV shows, Movies and Animes Tracker.
 
@@ -8,6 +8,10 @@ Simkl-enhancer is a chrome extension to add some funcionalities to [Simkl](https
 
 ![Example](https://i.imgur.com/QoR78uc.png "Example of the feature")
 
-## Instalation
+## Instalation User level
 
-Clone or Download the code in any folder. After that go to  `chrome://extensions/` in your browser and drag and drop the folder containg all the files
+Go to [Chrome web store](https://chrome.google.com/webstore/detail/simkl-enhacer/bfihfcadjnieciejgpnlpglcacbjiefa) and install it.
+
+## Instalation Dev level
+
+Clone or Download the code in any folder. After that go to  `chrome://extensions/` in your browser and drag and drop the folder containg all the files.
