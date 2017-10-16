@@ -4,7 +4,7 @@ Simkl-enhancer is a chrome extension to add some funcionalities to [Simkl](https
 
 ## Funcionalities
 
-* Add an https://animeflv.net direct link in all the episodes o animes. There are some that doesn't have link and is posible that some don't work. 
+* Add an https://animeflv.net and http://jkanime.net/ direct link in all the episodes o animes.
 
 ![Example](https://i.imgur.com/QoR78uc.png "Example of the feature")
 

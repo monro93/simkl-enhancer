@@ -5,7 +5,9 @@
   "version": "0.1.1",
   "description": "Add AnimeFLV to SIMKL",
   "permissions": [
-    "webNavigation"
+    "webNavigation",
+    "https://animeflv.net/",
+    "https://jkanime.net/"
   ],
  
   "content_scripts": [{

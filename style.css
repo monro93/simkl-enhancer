@@ -8,6 +8,16 @@
     padding-left: 73px;
 }
 
+.SimklTVDetailEpisodeLinkJKAnime {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/jkanime.png") no-repeat;
+    width: 124px;
+    height: 24px;
+    padding-left: 73px;
+}
+
 .SimklTVDetailEpisodeLinksItem a:hover{
     text-decoration: none;
 }
