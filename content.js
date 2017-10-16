@@ -2,11 +2,30 @@ var modes = [
     {  
         "name":"Anime",
         "regexp":"https:\/\/simkl.com\/anime\/\\d+\/([^\/]*)\/episode-(\\d+)",
+        "showText": "episode",
         "sites":[  
             "AnimeFLV",
             "JKAnime"
         ]
-    }
+    },
+    {  
+        "name":"Serie",
+        "regexp":"https:\/\/simkl.com\/tv\/\\d+\/([^\/]*)\/season-(\\d+)\/episode-(\\d+)",
+        "showText": "episode",
+        "sites":[  
+            "PopCornTime"
+        ]
+    },
+    {  
+        "name":"Movie",
+        "regexp":"https:\/\/simkl.com\/movies\/\\d+\/([^\/]*)",
+        "showText": "movie",
+        "sites":[  
+            "Rainierland",
+            "SubsMovies"
+        ]
+    },
+
 ];
 
 window.addEventListener("lprequestend", function(){addAlternativeLinks();});
@@ -14,11 +33,14 @@ window.addEventListener("lprequestend", function(){addAlternativeLinks();});
 /*Common*/
 
 function addAlternativeLinks(){
+    saveIMDbID(/https:\/\/simkl.com\/[^\/]*\/\d+\/([^\/]*)/g.exec(window.location.href)[1]);
     modes.forEach(function(mode){
         const episodeRegexp = new RegExp(mode["regexp"], 'g');
 
         let info = episodeRegexp.exec(window.location.href);
+
         if(info !== null){
+            console.log(mode.name);
             window["addAlternativeLinks"+mode["name"]](info, mode);
         }
 
@@ -37,7 +59,7 @@ function checkLink(link, callback){
     http.send();
 }
 
-function addLinkElement(site, episodeLink){
+function addLinkChapterElement(mode, site, episodeLink){
     let newLinkHtml = 
         "<tr><td height=\"46\">" +
         "<div class=\"SimklTVDetailEpisodeLinksItem Sub ajLinkInside SimklEnhancer\" id=\"emb0\">" +
@@ -47,7 +69,7 @@ function addLinkElement(site, episodeLink){
                     "<td width=\"1\" class=\"SimklTVDetailEpisodeLinkNumber\">Sub<\/td>"+
                     "<td width=\"1\"><div class=\"SimklTVDetailEpisodeLink"+ site +"\">&nbsp;<\/div><\/td>"+
                     "<td class=\"SimklTVDetailEpisodeLinkDesc\">"+
-                        "Free full episode available. Click here to watch now.<br>"+
+                        "Free full pirate "+mode["showText"]+" available. Click here to watch now.<br>"+
                     "<\/td>"+
                     "<td width=\"1\" class=\"SimklTVDetailEpisodeLinkGo\">\u00BB<\/td>"+
                 "<\/tr><\/tbody>" +
@@ -68,6 +90,29 @@ function addLinkElement(site, episodeLink){
     }
 }
 
+function saveIMDbID(name){
+    var imdbElement = document.querySelectorAll('[src="//eu.simkl.in/img_tv/ico-rating_imdb.png"]')[0];
+    if((imdbElement) != null){
+        const id = imdbElement.parentElement
+            .getAttribute("href")
+            .replace(/http:\/\/www\.imdb\.com\/title\/tt|\/$/g, "");
+        chrome.storage.sync.set({[name]:id});
+    }
+    //chrome.storage.sync.get(function(result){console.log(result)});
+}
+
+function getIMDbID(name, callback){
+    chrome.storage.sync.get(
+        name,
+        function(result){
+            console.log(result[name]);
+            console.log("getIMDbID");
+            callback(result[name]);
+        }
+    );
+    
+}
+
 /*Anime*/
 
 function addAlternativeLinksAnime(info, mode){
@@ -76,7 +121,7 @@ function addAlternativeLinksAnime(info, mode){
         checkLink(
             episodeLink,
             function(){
-                addLinkElement(site, episodeLink);
+                addLinkChapterElement(mode, site, episodeLink);
             }
         );
     });
@@ -90,4 +135,53 @@ function getLinkAnimeFLV(serie, episode){
 
 function getLinkJKAnime(serie, episode){
     return "https://jkanime.net/"+serie+"/"+episode+"/";
+}
+
+/*Movie*/
+
+function addAlternativeLinksMovie(info, mode){
+    mode["sites"].forEach(function(site){
+        const movieLink = window["getLink"+mode["name"]+site](info[1]);
+        checkLink(
+            movieLink,
+            function(){
+                addLinkChapterElement(mode, site, movieLink);
+            }
+        );    
+    });
+    
+}
+
+function getLinkMovieRainierland(movie){
+    const normalizeLink = movie.replace(/the-?|you-?|me-?/g, "");
+    return "https://www.rainierland.one/movie/" + normalizeLink;
+}
+
+function getLinkMovieSubsMovies(movie){
+    return "http://subsmovies.tv/watch?movie=" + getIMDbID(movie);
+}
+
+/*Series*/
+
+function addAlternativeLinksSerie(info, mode){
+    mode["sites"].forEach(function(site){
+        getIMDbID(
+            info[1],
+            function(imdbId){
+                console.log(imdbId);
+                checkLink(
+                    movieLink = getLinkSeriePopCornTime(info[1], info[2], info[3], imdbId),
+                    function(){
+                        addLinkChapterElement(mode, site, movieLink);
+                    }
+                );  
+            }
+        ); 
+    });
+    
+}
+
+
+function getLinkSeriePopCornTime(serie, season, episode, imdbId){
+    return "https://watch.popcorntime-online.tv/"+serie+".html?imdb=" + imdbId + "-" + season + "-" + episode;
 }

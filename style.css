@@ -18,6 +18,37 @@
     padding-left: 73px;
 }
 
+.SimklTVDetailEpisodeLinkRainierland {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/rainierland.png") no-repeat;
+    width: 124px;
+    height: 30px;
+    padding-left: 73px;
+}
+
+.SimklTVDetailEpisodeLinkSubsMovies {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/subsmovies.png") no-repeat;
+    width: 124px;
+    height: 30px;
+    padding-left: 73px;
+}
+
+.SimklTVDetailEpisodeLinkPopCornTime {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url("chrome-extension://__MSG_@@extension_id__/img/popcorntime.png") no-repeat;
+    width: 124px;
+    height: 30px;
+    padding-left: 73px;
+}
+
+
 .SimklTVDetailEpisodeLinksItem a:hover{
     text-decoration: none;
 }
@@ -28,4 +59,12 @@
 
 .SimklTVDetailEpisodeLinkAnimeFLV:hover{
     background: url("chrome-extension://__MSG_@@extension_id__/img/animeflv-inverted.png") no-repeat;
+}
+
+.SimklTVDetailEpisodeLinkRainierland:hover{
+    background: url("chrome-extension://__MSG_@@extension_id__/img/rainierland-inverted.png") no-repeat;
+}
+
+.SimklTVDetailEpisodeLinkPopCornTime:hover{
+    background: url("chrome-extension://__MSG_@@extension_id__/img/popcorntime-inverted.png") no-repeat;
 }

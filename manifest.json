@@ -2,18 +2,27 @@
   "manifest_version": 2,
  
   "name": "SIMKL Enhacer",
-  "version": "0.1.2",
-  "description": "Add AnimeFLV to SIMKL",
+  "version": "0.1.3",
+  "description": "Add Extra links to SIMKL",
   "permissions": [
     "webNavigation",
+    "storage",
     "https://animeflv.net/",
-    "https://jkanime.net/"
+    "https://jkanime.net/",
+    "https://www.rainierland.one/",
+    "http://subsmovies.tv/",
+    "https://watch.popcorntime-online.tv/"
   ],
  
   "content_scripts": [{
     "css": ["style.css"],
     "js": ["content.js"],
-    "matches": ["https://simkl.com/anime/*/*/episode-*/*", "https://simkl.com/anime/*/*"],
+    "matches": [
+        "https://simkl.com/anime/*/*/episode-*/*",
+        "https://simkl.com/anime/*/*",
+        "https://simkl.com/movies/*/*",
+        "https://simkl.com/tv/*/*"
+     ],
     "run_at": "document_end"
   }],
   "web_accessible_resources":
