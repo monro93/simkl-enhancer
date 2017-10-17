@@ -18,10 +18,9 @@
     "css": ["style.css"],
     "js": ["content.js"],
     "matches": [
-        "https://simkl.com/anime/*/*/episode-*/*",
-        "https://simkl.com/anime/*/*",
-        "https://simkl.com/movies/*/*",
-        "https://simkl.com/tv/*/*"
+        "https://simkl.com/anime*",
+        "https://simkl.com/movies*",
+        "https://simkl.com/tv*"
      ],
     "run_at": "document_end"
   }],

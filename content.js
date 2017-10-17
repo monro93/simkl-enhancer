@@ -33,14 +33,17 @@ window.addEventListener("lprequestend", function(){addAlternativeLinks();});
 /*Common*/
 
 function addAlternativeLinks(){
-    saveIMDbID(/https:\/\/simkl.com\/[^\/]*\/\d+\/([^\/]*)/g.exec(window.location.href)[1]);
+
+    if((info = /https:\/\/simkl.com\/[^\/]*\/\d+\/([^\/]*)/g.exec(window.location.href))){
+        saveIMDbID(info[1]);
+    }
+
     modes.forEach(function(mode){
         const episodeRegexp = new RegExp(mode["regexp"], 'g');
 
         let info = episodeRegexp.exec(window.location.href);
 
         if(info !== null){
-            console.log(mode.name);
             window["addAlternativeLinks"+mode["name"]](info, mode);
         }
 
@@ -98,15 +101,13 @@ function saveIMDbID(name){
             .replace(/http:\/\/www\.imdb\.com\/title\/tt|\/$/g, "");
         chrome.storage.sync.set({[name]:id});
     }
-    //chrome.storage.sync.get(function(result){console.log(result)});
+
 }
 
 function getIMDbID(name, callback){
     chrome.storage.sync.get(
         name,
         function(result){
-            console.log(result[name]);
-            console.log("getIMDbID");
             callback(result[name]);
         }
     );
@@ -168,7 +169,6 @@ function addAlternativeLinksSerie(info, mode){
         getIMDbID(
             info[1],
             function(imdbId){
-                console.log(imdbId);
                 checkLink(
                     movieLink = getLinkSeriePopCornTime(info[1], info[2], info[3], imdbId),
                     function(){
